@@ -8,7 +8,7 @@ public class trial {
 	public static void main(String[] args) {
 		
 		Scanner sc=new Scanner(System.in);
-		registration r=new registration();
+		usercontroller r=new usercontroller();
 		service mr = new mobileRechargeService();
 		mobileServiceProvider ms = new etisalatMS();
 		field f = new textField();
@@ -17,7 +17,7 @@ public class trial {
 		int choice;
 				do
 		{
-		  System.out.println("Please choose 1.sign up  2.sign in  3.search for service");
+		  System.out.println("Please choose 1.sign up  2.sign in  3.search for service 5.add money from credit card to wallet 6.exit");
 		  choice=sc.nextInt();
 
 		if(choice==1) 
@@ -57,12 +57,23 @@ public class trial {
 			t.add(new transaction(mobileNum,amount));
 				System.out.println(t); //create(service , serviceprovider
 		}
+		else if (choice==5)
+		{
+			System.out.println("Please enter your username");
+            String email=sc.next();
+            System.out.println("Please enter your cardnumber");
+            String password=sc.next();
+            System.out.println("Please enter amount of money you want to be added");
+            double amount;
+    		amount=sc.nextDouble();
+            r.addtowallet(email,amount ,password);
+		}
 		else
 		{
 			System.out.println("Invalid choice");
 		}
 		}
-		while(choice!=5);
+		while(choice!=6);
 		}
         
 	

@@ -2,11 +2,11 @@ package trial;
 
 import java.util.ArrayList;
 
-public class registration {
+public class usercontroller {
 	public ArrayList<account> accounts=new ArrayList<>();
 
 	  account acc=new account();
-	  public registration() {}
+	  public usercontroller() {}
 
 	  public void signUp(String username,String email,String password)
 	  {
@@ -66,5 +66,40 @@ public class registration {
 		        	  System.out.println("User not found ,please sign up");
 		          }
 		        }  
+	  }
+	  public void addtowallet (String username,double amount,String cardnumber)
+	  {
+	      int count = 0;
+	      for(int i = 0; i < cardnumber.length(); i++) {
+	          if(cardnumber.charAt(i) != ' ')
+	              count++;
+	      } 
+	      if(accounts.size()==0)
+	      {
+	          System.out.println("user not found please sign in first");
+	      }
+	      for(int i=0;i<accounts.size();i++)
+	      {
+	          acc=accounts.get(i);
+	          if(username.equalsIgnoreCase(acc.getuserName()))
+	          { if(count==16)
+	              {
+	                 acc.setWallet(amount+acc.getWallet());
+	                 System.out.println("successful transfer ,wallet balance= "+acc.getWallet());
+	                 break;
+	              }
+	          else {
+	              System.out.println("wrong card number");
+	              break;
+	          }
+	          }
+	          else 
+	          {
+
+	              System.out.println("user not found please sign in first");
+	          }
+
+
+	      }
 	  }
 }
