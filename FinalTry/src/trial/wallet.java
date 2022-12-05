@@ -1,8 +1,7 @@
 package trial;
 
-public class wallet implements payment{
+public class wallet extends payment{
 
-	@Override
 	public double cost(service s) {
 		return s.getCost();
 	}

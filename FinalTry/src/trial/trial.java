@@ -17,14 +17,20 @@ public class trial {
 	public static void main(String[] args) {
 		
 		Scanner sc=new Scanner(System.in);
+		admin adm=new admin();
 		userController r=new userController();
 		ArrayList<transaction>t=new ArrayList<>();
 		transaction ta = new transaction();
 		boolean output1=false;
+		int choice2;
 		int choice;
+		do {
+			System.out.println("if you are user press 1 , if you are admin press 2 , to exit press 3");
+			choice2=sc.nextInt();
+		if(choice2==1) {
 		do
 		{
-		  System.out.println("Please choose 1.sign up  2.sign in  3.search for service 4. Add To your Wallet");
+		  System.out.println("Please choose 1.sign up  2.sign in  3.search for service 4. Add To your Wallet 5.Show discounts 6.Exit");
 		  choice=sc.nextInt();
 	   if(choice ==1 || choice ==2) {
 		if(choice==1 ) 
@@ -281,14 +287,60 @@ public class trial {
     		amount=sc.nextDouble();
             r.addtowallet(email,amount ,password);
 		}
+		else if(choice==5)
+		{
+			
+			adm.displayDiscount();
+		}
 		else
 		{
 			System.out.println("Invalid choice");
 		}
 		}
-				while(choice!=5);
+				while(choice!=6);
+	}
+		else if(choice2==2)//do
+		{
+			int choice3;
+			
+			do
+			{
+				System.out.println("1.add discount 2.Exit");
+				choice3=sc.nextInt();
+				
+				if(choice3==1)
+				{
+					
+					System.out.println("for overall discount press 1 for specific discount press 2");
+					int discountchoice;
+					double amount;
+					String serviceName;
+					discountchoice=sc.nextInt();
+					
+					System.out.println("enter discount amount");
+					amount=sc.nextDouble();
+					if(discountchoice==1)
+						{
+						adm.addoverallDiscount(amount);
+						}
+					else
+					{
+						System.out.println("enter service name");
+						serviceName=sc.next();
+						adm.addSpecificDiscount(amount, serviceName);
+					}
+						
+				}
+				
+				
+			}	
+				
+			while(choice3!=2);
+		}
+		
 	}
         
-	
+	while(choice2!=3);
 
+}
 }

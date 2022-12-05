@@ -1,6 +1,9 @@
 package trial;
 
-public abstract class service {
+import java.util.ArrayList;
+
+public abstract class service 
+{
 	
 	public abstract void setCost(double cost);
 	public abstract double getCost();
@@ -14,4 +17,6 @@ public abstract class service {
 			return false;
 		}
 	}
+	//ArrayList<Double>specificDiscount=new ArrayList<>();
+	
 }

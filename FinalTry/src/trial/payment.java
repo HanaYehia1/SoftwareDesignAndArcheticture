@@ -1,7 +1,8 @@
 package trial;
 
-public interface payment {
+public abstract class payment {
 
-	public double cost(service s);
-	
+	abstract public double cost(service s);
+	String sname;
+	double cost;
 }
