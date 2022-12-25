@@ -1,8 +1,8 @@
 package trial;
 
-public class cashOnDelivery implements payment{
+public class cashOnDelivery extends payment{
 
-	@Override
+
 	public double cost(service s) {
 		if(s.supportsCashOnDelivery()) {
 			return s.getCost();

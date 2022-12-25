@@ -1,6 +1,6 @@
 package trial;
 
-public class creditCard implements payment{
+public class creditCard extends payment{
 
 	@Override
 	public double cost(service s) {
