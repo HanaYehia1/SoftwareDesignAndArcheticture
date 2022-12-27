@@ -3,13 +3,13 @@ package trial;
 import java.util.ArrayList;
 
 public class transaction {
-	public String num;
+	public double num;
 	public double amount;
 	public service serviceName;
 	public String typetransaction;
 	public String user;
 	 
-	 public transaction(String num,double amount, service serviceName,String typetransaction,String user)
+	 public transaction(double num,double amount, service serviceName,String typetransaction,String user)
 	 {
 		 this.num=num;
 		 this.amount=amount;
@@ -26,7 +26,7 @@ public class transaction {
 		 return typetransaction;	 
      }
 
-	public String getTyepe()
+	public double getTyepe()
 	 {
 		 return num;
 	 }

@@ -2,16 +2,25 @@ package trial;
 
 public class textField extends field {
 
+	private double info;
+
 	textField(form form) {
 		super(form);
 	}
 
 	public textField(){}
 
-	@Override
-	public boolean execute() {
+	
+	public void execute(double info) 
+	{
 		// TODO Auto-generated method stub
-		return false;
+		this.info=info;
+	}
+
+	@Override
+	public double getInfo() {
+		// TODO Auto-generated method stub
+		return info;
 	}
 
 }

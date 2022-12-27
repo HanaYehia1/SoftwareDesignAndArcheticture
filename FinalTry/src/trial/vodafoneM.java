@@ -13,9 +13,13 @@ public class vodafoneM extends mobileServiceProvider{
 	}
 
 	@Override
-	public void createForm() {
-		form f = new form();
-		f.createForm();			
+		public void createForm(form f) 
+	{
+			textField t1 = new textField();
+			dropDownField dp2 = new dropDownField();
+			f.Addfields(dp2);
+			f.Addfields(t1);
+				
 	}
 
 }

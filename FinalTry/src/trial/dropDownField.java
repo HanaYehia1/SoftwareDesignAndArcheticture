@@ -2,13 +2,25 @@ package trial;
 
 public class dropDownField extends field{
 
-	dropDownField(form form) {
+	double info;
+	dropDownField(form form) 
+	{
 		super(form);
 	}
-
-	public boolean execute() {
+	public dropDownField()
+	{
 		
-		return false;
+	}
+
+	@Override
+	public void execute(double info) {
+		// TODO Auto-generated method stub
+		this.info=info;
+	}
+	@Override
+	public double getInfo() {
+		// TODO Auto-generated method stub
+		return info;
 	}
 
 }

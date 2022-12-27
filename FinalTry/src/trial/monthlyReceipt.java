@@ -7,10 +7,19 @@ public class monthlyReceipt extends landlineServiceProvider{
 		String var=" Monthly Receipt Landline ";
 		 return var;
 	}
+
 	@Override
-	public void createForm() {
-		form f = new form();
-		f.createForm();		
+	public void createForm(form f) {
+		textField t1 = new textField();
+		dropDownField t2= new dropDownField();
+		f.Addfields(t1);
+		f.Addfields(t2);
+		
+	}
+		
 	}
 
-}
+	
+	
+
+

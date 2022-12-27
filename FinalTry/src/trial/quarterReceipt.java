@@ -8,10 +8,14 @@ public class quarterReceipt extends landlineServiceProvider{
          return var;
 	}
 	@Override
-	public void createForm() {
-		form f = new form();
-		f.createForm();		
-	}
+	public void createForm(form f) {
+		dropDownField dp2 = new dropDownField();
+		dropDownField dp1 = new dropDownField();
+		f.Addfields(dp2);
+		f.Addfields(dp1);
+		System.out.println("2 drop down");
 
 
+}
+	
 }

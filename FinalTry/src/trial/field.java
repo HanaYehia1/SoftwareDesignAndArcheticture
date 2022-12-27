@@ -3,11 +3,12 @@ package trial;
 public abstract class field {
 
 	public form form;
-	private String backup;
 	
-	field(form form){
+	field(form form)
+	{
 		this.form = form;
 	}
 	field(){}
-	public abstract boolean execute();
+	public abstract void execute(double cost);
+	public abstract double getInfo();
 }

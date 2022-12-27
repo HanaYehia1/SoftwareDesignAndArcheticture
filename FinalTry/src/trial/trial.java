@@ -3,7 +3,8 @@ package trial;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class trial {
+public class trial 
+{
 
 	public static void printMenu() {
 		System.out.println("Please choose an service you want to pay for");
@@ -15,7 +16,7 @@ public class trial {
 
 	}
 	public static void main(String[] args) {
-		
+		form f=new form();
 		ArrayList<String>nameu=new ArrayList<String>();
 		Scanner sc=new Scanner(System.in);
 		admin adm=new admin();
@@ -79,48 +80,63 @@ public class trial {
 			int serviceProviderNum = sc.nextInt();
 			switch(serviceProviderNum) {
 			case 1:{
-				mobileServiceProvider ms = new etisalatMS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
-				
+				mobileServiceProvider ms = new etisalatMS();
+				etisalatMS es= new etisalatMS();
+				es.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));	
 				break;
 			}
-			case 2:{
+			case 2:
+			{
 				
 				mobileServiceProvider ms = new vodafoneM();
-				ms.createForm();
+				vodafoneM vf=new vodafoneM();
+				vf.createForm(f);
 				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));		
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					
+					System.out.println(f.getFields().get(i).getInfo());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));		
 				break;
+				
 			}
 			case 3:{
-				mobileServiceProvider ms = new orangeMS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				String type=sc.next();
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				mobileServiceProvider ms = new orangeMS();
+				orangeMS os=new orangeMS();
+				os.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 		    	}
 			case 4:{
 				mobileServiceProvider ms = new weMS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
+				weMS wems=new weMS();
+				wems.createForm(f);
 				service serviceName = new mobileRechargeService();
-				String type=sc.next();
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
 			}
@@ -135,47 +151,55 @@ public class trial {
 			int serviceProviderNum = sc.nextInt();
 			switch(serviceProviderNum) {
 			case 1:{          
-				internetServiceProvider ms = new etisalatIS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				internetServiceProvider ms = new etisalatIS();
+				etisalatIS eis=new etisalatIS();
+				eis.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
 			case 2:{
-				internetServiceProvider ms = new vodafoneIS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				internetServiceProvider ms = new vodafoneIS();
+				vodafoneIS voIs=new vodafoneIS();
+				voIs.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
 			case 3:{
-				internetServiceProvider ms = new orangeIS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				internetServiceProvider ms = new orangeIS();
+				orangeIS oIs=new orangeIS();
+				oIs.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 		    	}
 			case 4:{
 				internetServiceProvider ms = new weIS();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				weIS weis=new weIS();
+				weis.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
 			}
@@ -191,24 +215,28 @@ public class trial {
 			switch(serviceProviderNum) {
 			case 1:{
 				landlineServiceProvider ms = new quarterReceipt();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new landlineService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				quarterReceipt quartRec=new quarterReceipt();
+				quartRec.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 2:{
-				landlineServiceProvider ms = new monthlyReceipt();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new landlineService();
-		
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				landlineServiceProvider ms = new monthlyReceipt();
+				monthlyReceipt Mrec=new monthlyReceipt();
+				Mrec.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 		     	}
 			}
@@ -223,36 +251,42 @@ public class trial {
 	 		int serviceProviderNum = sc.nextInt();
 			switch(serviceProviderNum) {
 			case 1:{
-				donationsServiceProvider ms = new ngo();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				donationsServiceProvider ms = new ngo();
+				ngo N=new ngo();
+				N.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 2:{
-				donationsServiceProvider ms = new schools();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-			
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				donationsServiceProvider ms = new schools();
+				schools sco=new schools();
+				sco.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 3:{
-				donationsServiceProvider ms = new ngo();
-				ms.createForm();
-				ms.display();
-				String mobileNum=sc.next();
-				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-				
-				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				donationsServiceProvider ms = new cancerHospitals();
+				cancerHospitals cHosi=new cancerHospitals();
+				cHosi.createForm(f);
+				ms.display();
+				for(int i=0;i<f.getFields().size();i++)
+				{
+					f.getFields().get(i).execute(sc.nextDouble());
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				
 					break;
 		    	}
@@ -283,7 +317,7 @@ public class trial {
             
             if(r.addtowallet(username,amount ,password )==true)
             {
-            	t.add(new transaction("",amount,serviceName ,"add to wallet",username));
+            	t.add(new transaction(0,amount,serviceName ,"add to wallet",username));
 	
             }
 		}

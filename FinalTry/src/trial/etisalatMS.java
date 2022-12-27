@@ -11,10 +11,17 @@ public class etisalatMS extends mobileServiceProvider {
 		 String var="Etisalat Mobile Recharge Service";
          return var;
 	}
-
-	public void createForm() {
-		form f = new form();
-		f.createForm();
+	@Override
+	public void createForm(form f) {
+		textField t2 = new textField();
+		dropDownField t1= new dropDownField();
+		f.Addfields(t2);
+		f.Addfields(t1);
+		
 	}
+		
+	}
+		
 
-}
+
+

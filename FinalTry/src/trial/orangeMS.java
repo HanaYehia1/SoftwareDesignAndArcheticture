@@ -13,9 +13,15 @@ public class orangeMS extends mobileServiceProvider{
 	}
 
 	@Override
-	public void createForm() {
-		form f = new form();
-		f.createForm();		
+	public void createForm(form f) {
+		textField t2 = new textField();
+		textField t1= new textField();
+		f.Addfields(t2);
+		f.Addfields(t1);
+		
+	
 	}
+
+	
 
 }
