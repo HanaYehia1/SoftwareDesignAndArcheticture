@@ -1,27 +1,30 @@
 package trial;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class trial {
 
 	public static void printMenu() {
-		System.out.println("Please choose an option");
+		System.out.println("Please choose an service you want to pay for");
 		System.out.println("1- Mobile Service Recharge");
 		System.out.println("2- Internet Service Recharge");
 		System.out.println("3- Landline Service Charge");
 		System.out.println("4- Donations");
+		System.out.println("If you wish to return to the menu press any number other than mentioned above ");
 
 	}
 	public static void main(String[] args) {
 		
+		ArrayList<String>nameu=new ArrayList<String>();
 		Scanner sc=new Scanner(System.in);
 		admin adm=new admin();
+		account acc=new account();
 		userController r=new userController();
 		ArrayList<transaction>t=new ArrayList<>();
 		transaction ta = new transaction();
 		boolean output1=false;
+		String username;
 		int choice2;
 		int choice;
 		do {
@@ -30,29 +33,39 @@ public class trial {
 		if(choice2==1) {
 		do
 		{
-		  System.out.println("Please choose 1.sign up  2.sign in  3.search for service 4. Add To your Wallet 5.Show discounts 6.Exit");
+		  System.out.println("Please choose 1.sign up  2.pay service  3.search for service 4. Add To your Wallet 5.Show discounts 6.Exit");
 		  choice=sc.nextInt();
 	   if(choice ==1 || choice ==2) {
 		if(choice==1 ) 
 		{
 		
 		System.out.println("Please enter your username");
-		String username=sc.next();
+		username=sc.next();
 		System.out.println("Please enter your email");
 		String email=sc.next();
 		System.out.println("Please enter your password");
 		String password=sc.next();
 		output1=r.signUp(username, email, password);
+		if(output1==true)
+			nameu.add(username);
+		else
+			System.out.println("email or username already existed in system please choose enter another one ");
+		
 		
 		}
 		else if(choice==2)
 		{
-			System.out.println("Please enter your email");
-			String email=sc.next();
+			System.out.println("Please enter your username");
+			 username=sc.next();
 			System.out.println("Please enter your password");
 			String password=sc.next();
-            output1 = r.signIn(email, password);
-            
+            output1 = r.signIn(username, password);
+            if(output1==true)
+    			nameu.add(username);
+            else
+            	System.out.println("user not found please sign up first");
+           
+           
 		}
 		if(output1==true) {
 		printMenu();
@@ -70,37 +83,33 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-				System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-				}
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				
 				break;
 			}
 			case 2:{
+				
 				mobileServiceProvider ms = new vodafoneM();
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}				break;
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));		
+				break;
 			}
 			case 3:{
 				mobileServiceProvider ms = new orangeMS();
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				String type=sc.next();
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 		    	}
 			case 4:{
@@ -108,12 +117,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				String type=sc.next();
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
 			}
@@ -132,12 +139,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
 			case 2:{
@@ -145,36 +150,32 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}				break;
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				break;
 			}
 			case 3:{
 				internetServiceProvider ms = new orangeIS();
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}				break;
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
+				break;
 		    	}
 			case 4:{
 				internetServiceProvider ms = new weIS();
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new internetPaymentService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
 			}
@@ -193,12 +194,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new landlineService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 2:{
@@ -206,12 +205,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new landlineService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+		
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 		     	}
 			}
@@ -230,12 +227,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 2:{
@@ -243,12 +238,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-				t.add(new transaction(mobileNum,amount,serviceName));
-				for( transaction ts:t) {
-					System.out.println(ts.getTyepe()+" "+ts.getService().toString()+" "+ ts.getAmount());
-					}
+			
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
 			case 3:{
@@ -256,9 +249,10 @@ public class trial {
 				ms.createForm();
 				ms.display();
 				String mobileNum=sc.next();
-				String amount = sc.next();
+				double amount = sc.nextDouble();
 				service serviceName = new donationService();
-				t.add(new transaction(mobileNum,amount,serviceName));
+				
+				t.add(new transaction(mobileNum,amount,serviceName,"payment",nameu.get(nameu.size()-1)));
 				
 					break;
 		    	}
@@ -278,14 +272,20 @@ public class trial {
 	
 		else if (choice==4)
 		{
+			 service serviceName= null;
 			System.out.println("Please enter your username");
-            String email=sc.next();
+              username=sc.next();
             System.out.println("Please enter your cardnumber");
             String password=sc.next();
             System.out.println("Please enter amount of money you want to be added");
             double amount;
     		amount=sc.nextDouble();
-            r.addtowallet(email,amount ,password);
+            
+            if(r.addtowallet(username,amount ,password )==true)
+            {
+            	t.add(new transaction("",amount,serviceName ,"add to wallet",username));
+	
+            }
 		}
 		else if(choice==5)
 		{
@@ -305,7 +305,7 @@ public class trial {
 			
 			do
 			{
-				System.out.println("1.add discount 2.Exit");
+				System.out.println("1.add discount 2.list user transaction 3.Exit");
 				choice3=sc.nextInt();
 				
 				if(choice3==1)
@@ -331,11 +331,18 @@ public class trial {
 					}
 						
 				}
+				else if(choice3==2)
+				{
+					System.out.println("Please enter your username");
+		             username=sc.next();
+					adm.usertransaction(t, username);
+					
+				}
 				
 				
 			}	
 				
-			while(choice3!=2);
+			while(choice3!=3);
 		}
 		
 	}

@@ -10,6 +10,7 @@ public class userController {
 
 	  public boolean signUp(String username,String email,String password)
 	  {
+		  boolean check=false;
 	    if(accounts.size()==0)
 	    {
 	        accounts.add(new account(username,email,password, 0));
@@ -23,23 +24,23 @@ public class userController {
 	            acc=accounts.get(i);
 	          if(username.equalsIgnoreCase(acc.getuserName())||email.equalsIgnoreCase(acc.getemail()))
 	          {
-	              System.out.println("The username or email you entered are registered before");
-	              return false;
+	              check=true;
+	        	  break;
 	          }
-	          else
-	          {
+	          
+	        }
+	    }
+	    if(check==false)
+	    {  	      
 	              accounts.add(new account(username,email,password, 0));
 	              System.out.println("registerd");
 	              return true;
-
-	          }
-	        }
 	    }
 		return false;
 
 	  }
 	  
-	  public boolean signIn(String email,String password)
+	  public boolean signIn(String username,String password)
 	  {
 		  if(accounts.size()==0)
 	      {
@@ -49,25 +50,21 @@ public class userController {
 		        for(int i=0;i<accounts.size();i++)
 		        {
 		            acc=accounts.get(i);
-		          if(email.equalsIgnoreCase(acc.getemail()) && password.equalsIgnoreCase(acc.getpassword()))
+		          if(username.equalsIgnoreCase(acc.getuserName()) && password.equalsIgnoreCase(acc.getpassword()))
 		          {
 		              System.out.println("You have successfully signed in ");
 		        	  return true;  
 		          }
-		          else if(email.equalsIgnoreCase(acc.getemail()) || password.equalsIgnoreCase(acc.getpassword()))
+		          else if(username.equalsIgnoreCase(acc.getuserName()) || password.equalsIgnoreCase(acc.getpassword()))
 		          {
 		              System.out.println("The email or password you entered are incorrect");
 		        	  return false;
 		          }
-		          else
-		          {
-		        	  System.out.println("User not found ,please sign up");
-		        	  return false;  
-		          }
+		          
 		        }
 				return false;
 	  }
-	  public void addtowallet (String username,double amount,String cardnumber)
+	  public boolean addtowallet (String username,double amount,String cardnumber)
 	  {
 	      int count = 0;
 	      for(int i = 0; i < cardnumber.length(); i++) {
@@ -86,21 +83,21 @@ public class userController {
 	              {
 	                 acc.setWallet(amount+acc.getWallet());
 	                 System.out.println("successful transfer ,wallet balance= "+acc.getWallet());
-	                 break;
+	                 return true;
+	                 
 	              }
+	          
 	          else {
 	              System.out.println("wrong card number");
-	              break;
+	              return false;
+	              
 	          }
 	          }
-	          else 
-	          {
-
-	              System.out.println("user not found please sign in first");
-	          }
+	         
 
 
 	      }
+	      return false;
 }
 	  
 }

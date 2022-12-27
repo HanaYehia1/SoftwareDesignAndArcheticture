@@ -1,6 +1,6 @@
 package trial;
 
-import java.util.ArrayList;
+
 
 public class account {
 
@@ -8,7 +8,7 @@ public class account {
 	   String password;
 	   String email;
 	   double wallet ;
-	   ArrayList<transaction> transactions=new ArrayList<transaction>();
+
 	  
 	   public account(String userName,String email,String password, double wallet)
 	   {
