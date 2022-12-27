@@ -1,6 +1,6 @@
 package trial;
 
-import java.util.ArrayList;
+
 
 public class transaction {
 	public double num;
