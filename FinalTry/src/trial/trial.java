@@ -24,6 +24,8 @@ public class trial
 		userController r=new userController();
 		ArrayList<transaction>t=new ArrayList<>();
 		transaction ta = new transaction();
+		overallDiscount ds;
+		
 		boolean output1=false;
 		String username;
 		int choice2;
@@ -89,6 +91,9 @@ public class trial
 				{
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
+				serviceName.setCost(f.getFields().get(1).getInfo());
+				overallDiscount overall=new overallDiscount(new creditCard());
+				System.out.println(overall.addDiscount());
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));	
 				break;
 			}
@@ -136,6 +141,7 @@ public class trial
 				{
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
@@ -363,6 +369,7 @@ public class trial
 						serviceName=sc.next();
 						adm.addSpecificDiscount(amount, serviceName);
 					}
+					
 						
 				}
 				else if(choice3==2)

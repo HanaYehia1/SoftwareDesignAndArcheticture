@@ -1,30 +1,30 @@
 package trial;
 
-import java.util.Dictionary;
+import java.util.ArrayList;
+
 
 public class overallDiscount extends paymentDecorator{
 
-	private service s;
-	double discount=0.0;
-	overallDiscount(payment dd) 
+    payment pay= new cashOnDelivery();
+	private admin ad=new admin();
+	overallDiscount(payment pay) 
 	{
-		super(dd);
+		super(pay);
 	}
 	
-	public double addDiscount(double discount) 
-	{
-		double value = s.getCost();
-		return value * discount;
-	}
-	public double getOverallDiscount()
+
+	
+	public double getDiscount()
 
     {
-	return discount;
+	  return ad.getdiscountpr("overall", " ");
 	
     }
-	public void setOverallDiscount(double discount)
+	public double addDiscount() 
 	{
-		this.discount=discount;
+		
+		return getDiscount()*service.getCost();
 	}
+
 	
 }

@@ -31,4 +31,15 @@ public ArrayList<mobileServiceProvider> printProviders()
 		String var=" Mobile Recharge Service ";
 		 return var;
 	}
+	public  boolean supportsCashOnDelivery(){
+		boolean support=true; 
+		if(support) {
+			System.out.println("payments options 1-credit card ");
+			return true;
+		}
+		else {
+			System.out.println("payments options 1-credit card 2-wallet 3-cash on delivery");
+			return false;
+		}
+	}
 }

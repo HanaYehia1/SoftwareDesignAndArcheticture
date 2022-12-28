@@ -8,18 +8,19 @@ public class admin {
 	ArrayList<Double>SDlist1=new ArrayList<>();
 	ArrayList<String>SDlist2=new ArrayList<>();
 	ArrayList<Double>overallList=new ArrayList<>();
-	public void addSpecificDiscount(double disType,String serviceName)
+	double value;
+	public void addSpecificDiscount(double disvalue,String serviceName)
 	{ 
 		
-	     SDlist1.add(disType);
+	     SDlist1.add(disvalue);
 	     SDlist2.add(serviceName);
 	     System.out.println("discount added successfully ");
 	     
 	}
-	public void addoverallDiscount(double disType)
+	public double addoverallDiscount(double disvalue)
 	{ 
-		overallList.add(disType);
 		System.out.println("discount added successfully ");
+		return value=disvalue;
    
 	}
 public void displayDiscount()
@@ -29,6 +30,23 @@ public void displayDiscount()
 	{
 		System.out.println("specific discount Name"+SDlist2.toString()+"amount"+SDlist1.toString());
 	}
+}
+public double getdiscountpr(String typediscount,String servicename)
+{
+	if(typediscount.equalsIgnoreCase("overall"))
+	{
+		return addoverallDiscount(10);
+	}
+	else if(typediscount.equalsIgnoreCase("specific"))
+	{
+		for(int i=0;i<SDlist2.size();i++)
+		{
+			if(SDlist2.get(i).equalsIgnoreCase(servicename))
+				return SDlist1.get(i)%100;
+		}
+		
+	}
+	return 1;
 }
 
 public void usertransaction(ArrayList<transaction> t, String username) {

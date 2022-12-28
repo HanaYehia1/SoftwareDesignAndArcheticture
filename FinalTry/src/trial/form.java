@@ -22,13 +22,6 @@ public class form extends field {
 	}
 	public ArrayList<field> fields=new ArrayList<>();
 
-//	public void createForm() {
-//		textField t1 = new textField();
-//		textField t2 = new textField();
-//		fields.add(t1);
-//		fields.add(t2);
-//	}
-	
 	protected void Addfields(field f) 
 	{
 		fields.add(f);
@@ -42,7 +35,7 @@ public class form extends field {
 	}
 	@Override
 	public double getInfo() {
-		// TODO Auto-generated method stub
+		
 		return info;
 	}
 	
