@@ -118,6 +118,23 @@ public class trial
 					payment spec=new specificDiscount(new creditCard());
 					 discountvalue=spec.cost(serviceName);
 				}
+				System.out.println("enter cardnumber");
+				while (true) {
+				String cardN=sc.next();
+				int count = 0;
+			      for(int i = 0; i < cardN.length(); i++) {
+			          if(cardN.charAt(i) != ' ')
+			              count++;
+			      } 
+			      if(count==16) {
+			    	  System.out.println("successful payment");
+			    	  break;
+			    	  }
+			      
+			      else {
+			    	  System.out.println("wrong cardnumber, please re-enter cardnumber");}
+				}
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),discountvalue,serviceName,"payment",nameu.get(nameu.size()-1)));	
 				break;
 			}

@@ -41,7 +41,8 @@ public double getdiscountpr(String typediscount,service servicename)
 	}
 	else if(typediscount.equalsIgnoreCase("specific"))
 	{
-		
+		if(overallList.size()!=0)
+		{
 		for(int i=0;i<1;i++)
 		{
 			
@@ -50,7 +51,7 @@ public double getdiscountpr(String typediscount,service servicename)
 				return SDlist1.get(i);
 		    }
 			
-			}
+			}}
 		
 	}
 	return 1;

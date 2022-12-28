@@ -8,7 +8,7 @@ public class creditCard extends payment{
 			return s.getCost();
 		}
 		else {
-			System.out.println("This service doesn't support cash on delivery");
+			System.out.println("This service doesn't support credit card");
 			return 0;
 		}
 	}
