@@ -2,23 +2,24 @@ package trial;
 
 public class specificDiscount extends paymentDecorator
 {
-
-	payment pay;
-	admin ad;
+	
+	private admin ad=new admin();
 
 	specificDiscount(payment pay) 
 	{
 		super(pay);
 	}
-
-	public double addDiscount() {
-		return ad.getdiscountpr("specific", pay.getdisservice());
-		
-	}
-	public double getdiscount()
+	
+	public double cost(service s) 
 	{
-		return addDiscount()*pay.cost() ;
-		
+		if(ad.getdiscountpr("specific",s)==1)
+			return super.cost(s);
+		else
+			return ((100-ad.getdiscountpr("specific",s))/100)*super.cost(s);
+			
 	}
+	
+	
+	
 	
 }

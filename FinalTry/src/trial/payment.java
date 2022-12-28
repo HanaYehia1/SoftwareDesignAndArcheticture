@@ -1,15 +1,15 @@
 package trial;
 
 public abstract class payment {
-    String discservice;//service name 
-	abstract public double cost();
-	public void setdiscservice(String discservice)
+   service s;
+	abstract public double cost(service s);
+	public void setdiscservice(service s)
 	{
-		this.discservice=discservice;
+		this.s=s;
 	}
-	public String getdisservice()
+	public service getdisservice()
 	{
-		return discservice;
+		return s;
 	}
 	
 }

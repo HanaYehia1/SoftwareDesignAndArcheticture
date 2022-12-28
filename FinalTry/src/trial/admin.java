@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class admin {
 	
-	ArrayList<Double>SDlist1=new ArrayList<>();
-	ArrayList<String>SDlist2=new ArrayList<>();
-	ArrayList<Double>overallList=new ArrayList<>();
+	static ArrayList<Double>SDlist1=new ArrayList<>();
+	static ArrayList<service>SDlist2=new ArrayList<>();
+	static ArrayList<Double>overallList=new ArrayList<>();
 	double value;
-	public void addSpecificDiscount(double disvalue,String serviceName)
+	public void addSpecificDiscount(double disvalue,service serviceName)
 	{ 
 		
 	     SDlist1.add(disvalue);
@@ -17,10 +17,11 @@ public class admin {
 	     System.out.println("discount added successfully ");
 	     
 	}
-	public double addoverallDiscount(double disvalue)
+	public void addoverallDiscount(double disvalue)
 	{ 
+		overallList.add(disvalue);
 		System.out.println("discount added successfully ");
-		return value=disvalue;
+		
    
 	}
 public void displayDiscount()
@@ -31,19 +32,25 @@ public void displayDiscount()
 		System.out.println("specific discount Name"+SDlist2.toString()+"amount"+SDlist1.toString());
 	}
 }
-public double getdiscountpr(String typediscount,String servicename)
+public double getdiscountpr(String typediscount,service servicename)
 {
 	if(typediscount.equalsIgnoreCase("overall"))
 	{
-		return addoverallDiscount(10);
+		if(overallList.size()!=0)
+		     return overallList.get(0);
 	}
 	else if(typediscount.equalsIgnoreCase("specific"))
 	{
-		for(int i=0;i<SDlist2.size();i++)
+		
+		for(int i=0;i<1;i++)
 		{
-			if(SDlist2.get(i).equalsIgnoreCase(servicename))
-				return SDlist1.get(i)%100;
-		}
+			
+			if(SDlist2.get(i).getClass()==servicename.getClass())
+			{
+				return SDlist1.get(i);
+		    }
+			
+			}
 		
 	}
 	return 1;

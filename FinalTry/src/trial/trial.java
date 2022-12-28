@@ -16,7 +16,7 @@ public class trial
 
 	}
 	public static void main(String[] args) {
-		form f=new form();
+		
 		ArrayList<String>nameu=new ArrayList<String>();
 		Scanner sc=new Scanner(System.in);
 		admin adm=new admin();
@@ -25,7 +25,7 @@ public class trial
 		ArrayList<transaction>t=new ArrayList<>();
 		transaction ta = new transaction();
 		overallDiscount ds;
-		
+		boolean checkuser=false;
 		boolean output1=false;
 		String username;
 		int choice2;
@@ -54,7 +54,6 @@ public class trial
 		else
 			System.out.println("email or username already existed in system please choose enter another one ");
 		
-		
 		}
 		else if(choice==2)
 		{
@@ -67,6 +66,18 @@ public class trial
     			nameu.add(username);
             else
             	System.out.println("user not found please sign up first");
+            if(nameu.size()>1) {
+        		for(int i=0;i<nameu.size();i++)
+        		{
+        			System.out.println("first");
+        			if(nameu.get(i).equalsIgnoreCase(username))
+        			{
+        				System.out.println("second");
+        				checkuser=true;
+        				break;
+        			}
+        		}
+        		}
            
            
 		}
@@ -85,6 +96,7 @@ public class trial
 				service serviceName = new mobileRechargeService();
 				mobileServiceProvider ms = new etisalatMS();
 				etisalatMS es= new etisalatMS();
+				form f=new form();
 				es.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -92,9 +104,21 @@ public class trial
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
 				serviceName.setCost(f.getFields().get(1).getInfo());
-				overallDiscount overall=new overallDiscount(new creditCard());
-				System.out.println(overall.addDiscount());
-				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));	
+				double discountvalue;
+				if(checkuser==false) {
+					
+					payment overall=new overallDiscount(new creditCard());
+					double overalldis=overall.cost(serviceName);
+					payment spec=new specificDiscount(new creditCard());
+					double specificdis=spec.cost(serviceName);
+					 discountvalue=overalldis-(serviceName.getCost()-specificdis);
+					
+				}else
+				{
+					payment spec=new specificDiscount(new creditCard());
+					 discountvalue=spec.cost(serviceName);
+				}
+				t.add(new transaction(f.getFields().get(0).getInfo(),discountvalue,serviceName,"payment",nameu.get(nameu.size()-1)));	
 				break;
 			}
 			case 2:
@@ -102,6 +126,7 @@ public class trial
 				
 				mobileServiceProvider ms = new vodafoneM();
 				vodafoneM vf=new vodafoneM();
+				form f=new form();
 				vf.createForm(f);
 				ms.display();
 				service serviceName = new mobileRechargeService();
@@ -121,6 +146,7 @@ public class trial
 			case 3:{
 				service serviceName = new mobileRechargeService();
 				mobileServiceProvider ms = new orangeMS();
+				form f=new form();
 				orangeMS os=new orangeMS();
 				os.createForm(f);
 				ms.display();
@@ -134,6 +160,7 @@ public class trial
 			case 4:{
 				mobileServiceProvider ms = new weMS();
 				weMS wems=new weMS();
+				form f=new form();
 				wems.createForm(f);
 				service serviceName = new mobileRechargeService();
 				ms.display();
@@ -160,12 +187,14 @@ public class trial
 				service serviceName = new internetPaymentService();
 				internetServiceProvider ms = new etisalatIS();
 				etisalatIS eis=new etisalatIS();
+				form f=new form();
 				eis.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
 				{
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
+				System.out.println(serviceName);
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
@@ -173,6 +202,7 @@ public class trial
 				service serviceName = new internetPaymentService();
 				internetServiceProvider ms = new vodafoneIS();
 				vodafoneIS voIs=new vodafoneIS();
+				form f=new form();
 				voIs.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -186,6 +216,7 @@ public class trial
 				service serviceName = new internetPaymentService();
 				internetServiceProvider ms = new orangeIS();
 				orangeIS oIs=new orangeIS();
+				form f=new form();
 				oIs.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -199,6 +230,7 @@ public class trial
 				internetServiceProvider ms = new weIS();
 				service serviceName = new internetPaymentService();
 				weIS weis=new weIS();
+				form f=new form();
 				weis.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -223,12 +255,14 @@ public class trial
 				landlineServiceProvider ms = new quarterReceipt();
 				service serviceName = new landlineService();
 				quarterReceipt quartRec=new quarterReceipt();
+				form f=new form();
 				quartRec.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
 				{
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
+				System.out.println(serviceName);
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
@@ -236,6 +270,7 @@ public class trial
 				service serviceName = new landlineService();
 				landlineServiceProvider ms = new monthlyReceipt();
 				monthlyReceipt Mrec=new monthlyReceipt();
+				form f=new form();
 				Mrec.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -260,12 +295,14 @@ public class trial
 				service serviceName = new donationService();
 				donationsServiceProvider ms = new ngo();
 				ngo N=new ngo();
+				form f=new form();
 				N.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
 				{
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
+				System.out.println(serviceName);
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
@@ -273,6 +310,7 @@ public class trial
 				service serviceName = new donationService();
 				donationsServiceProvider ms = new schools();
 				schools sco=new schools();
+				form f=new form();
 				sco.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -286,6 +324,7 @@ public class trial
 				service serviceName = new donationService();
 				donationsServiceProvider ms = new cancerHospitals();
 				cancerHospitals cHosi=new cancerHospitals();
+				form f=new form();
 				cHosi.createForm(f);
 				ms.display();
 				for(int i=0;i<f.getFields().size();i++)
@@ -354,7 +393,7 @@ public class trial
 					System.out.println("for overall discount press 1 for specific discount press 2");
 					int discountchoice;
 					double amount;
-					String serviceName;
+					int serviceName;
 					discountchoice=sc.nextInt();
 					
 					System.out.println("enter discount amount");
@@ -365,9 +404,22 @@ public class trial
 						}
 					else
 					{
-						System.out.println("enter service name");
-						serviceName=sc.next();
-						adm.addSpecificDiscount(amount, serviceName);
+						System.out.println("choose service type \n"+"1. Mobile Recharge Service \n"+"2. Internet Payment Service \n"+"3. Landline Service\n"+"4. Donation Service\n");
+						serviceName=sc.nextInt();
+						if(serviceName==1) {
+							service service = new mobileRechargeService();
+							adm.addSpecificDiscount(amount,service);}
+						else if(serviceName==2) {
+							service service = new internetPaymentService();
+							adm.addSpecificDiscount(amount,service);}
+						else if(serviceName==3) {
+							service service = new landlineService();
+							adm.addSpecificDiscount(amount, service);}
+						else if(serviceName==4) {
+							service service = new donationService();
+							adm.addSpecificDiscount(amount, service);}
+						
+						
 					}
 					
 						

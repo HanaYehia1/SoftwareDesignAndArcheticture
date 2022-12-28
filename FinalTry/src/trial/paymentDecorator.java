@@ -4,22 +4,16 @@ package trial;
 public class paymentDecorator extends payment
 {		
 	private payment wrappee;
-	private double discount;
-	paymentDecorator(payment dd)
+	paymentDecorator(payment wrappee)
 	{
-		this.wrappee = dd;
+		this.wrappee = wrappee;
 	}
 
-	
-	public double addDiscount(double discount) {
-		return this.discount = discount;
-	}
 
 
 	@Override
-	public double cost() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double cost(service s) {
+		return wrappee.cost(s);
 	}
 	
 }
