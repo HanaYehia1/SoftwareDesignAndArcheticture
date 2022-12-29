@@ -71,76 +71,113 @@ public void usertransaction(String username)
 			   System.out.println(" mobile number= "+t.get(i).getTyepe()+" "+t.get(i).getService().toString()+" "+t.get(i).getTypetransaction() +" amount of transaction is"+ t.get(i).getAmount());
 			if(t.get(i).getTypetransaction().equalsIgnoreCase("add to wallet"))
 				System.out.println(" "+t.get(i).getTypetransaction() +" amount of transaction is "+ t.get(i).getAmount());
+			if(t.get(i).getTypetransaction().equalsIgnoreCase("refund"))
+				System.out.println(" "+t.get(i).getTypetransaction() +" amount of transaction is "+ t.get(i).getAmount());
 				
 		}
 		
 	}
 }
-public void createUsertransaction(int num,double amount, service serviceName,String typetransaction,ArrayList<String>names)
+public void createUsertransactionPay(int num,double amount, service serviceName,ArrayList<String>names)
 {
-	if(t.size()==0)
-	{
-		
-		t.add(new transaction(num,amount,serviceName,typetransaction,names));	
-		
-	}
-	else
-		for(int i=0;i<t.size();)
-		{
-			t.add(new transaction(num,amount,serviceName,typetransaction,names));
-			break;
-		}
+	
+	t.add(new transaction(num,amount,serviceName,"payment",names));	
+	
+}
+public void createUsertransactionRefund(int num,double amount, service serviceName,ArrayList<String>names)
+{
+	
+	t.add(new transaction(num,amount,serviceName,"refund",names));	
+	
+}
+public void createUsertransactionWallet(int num,double amount, service serviceName,ArrayList<String>names)
+{
+	
+	t.add(new transaction(num,amount,serviceName,"add to wallet",names));	
 	
 }
 public boolean checkRefundRequest(String name)
+{
+	boolean checkRefundRequest=false;
+	if(t.size()>0)
 {
 	for(int i=0;i<t.size();i++)
 {
 	if(name.equalsIgnoreCase(t.get(i).getuser().get(i)))
 	{
-      System.out.println(" "+t.get(i).getService().toString()+" " +" amount of transaction is"+ t.get(i).getAmount());
-      return true;
+      System.out.println(" index: "+i+" "+t.get(i).getService().toString()+"" +" amount of transaction is "+ t.get(i).getAmount()+t.get(i).getTypetransaction());
 	
+      checkRefundRequest=true;
 	}
 	
+	
 }
+}
+	
+
+	if(checkRefundRequest==true)
+	{
+		return true;
+	}
 	System.out.println("You didn't make a transaction to make a refund!!!");
 	return false;
+		
 	
 }
 public void applyRefundRequest(int index,String name)
 
 {
-	if(refundList.size()==0)
-	{
-		
-		refundList.add(new transaction(t.get(index).getAmount(),t.get(index).getService()));
-		
-	}
-	else
-		for(int i=0;i<refundList.size();)
-		{
-			refundList.add(new transaction(t.get(index).getAmount(),t.get(index).getService()));
-			break;
-		}
-
+	refundList.add(new transaction(t.get(index).getAmount(),t.get(index).getService(),"Waiting for acceptance", name,index));
 	System.out.println("Request added succesfully ");
 }
 
 public void DisplayListOFrefunds()
 {
+	
 	for(int i=0;i<refundList.size();i++)
 	{
-	System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name"+refundList.get(i).getService().toString());
+		if(refundList.get(i).getTypetransaction().equalsIgnoreCase("Waiting for acceptance"))
+	    System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name:"+refundList.get(i).getService().toString()+" "+refundList.get(i).getTyepe());
 	}
 	
+	
 }
-public void AcceptRefund(int index)
+public void HandelRefundrequest(int index ,int choice)
 
 {
+	if(choice==1)
+	{
+		refundList.get(index).setTransactionStatus("accepted");
+	}
+	else
+		refundList.get(index).setTransactionStatus("not accepted");
 	
 }
 
 
+
+public void ShowListOfRefunds(String name)
+{
+	int counter=0;
+	if(refundList.size()>0)
+	{
+		for(int i=0;i<refundList.size();i++)
+		{
+			if(name.equalsIgnoreCase(refundList.get(i).getUsernamr()))
+			{
+				System.out.println("refunds requests: "+" "+refundList.get(i).getAmount()+" Amount "+refundList.get(i).getService().toString()+ ", Status: "+refundList.get(i).getTypetransaction());
+				counter++;
+			}
+			
+		}
+	}
+	
+	 if(refundList.size()==0&& counter==0)
+		System.out.println("No refunds requests");
+	
+	 if(counter==0)
+		System.out.println("No refunds requests");
+		
+}
 }
 

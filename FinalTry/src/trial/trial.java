@@ -35,7 +35,7 @@ public class trial
 		if(choice2==1) {
 		do
 		{
-		  System.out.println("Please choose 1.sign up  2.pay service  3.search for service 4. Add To your Wallet 5.Show discounts 6.refund 7.Exit");
+		  System.out.println("Please choose 1.sign up  2.pay service  3.search for service 4. Add To your Wallet 5.Show discounts 6.refund 7.show refunds status 8.Exit");
 		  choice=sc.nextInt();
 	   if(choice ==1 || choice ==2) {
 		if(choice==1 ) 
@@ -92,7 +92,7 @@ public class trial
 			int serviceProviderNum = sc.nextInt();
 			switch(serviceProviderNum) {
 			case 1:{
-				String typeTran="payment";//de ghlat lazem mat-get-esh setted felmain b enha payment fa msh 3rfa han3mlha ezay mara payment wmara add to wallet wmanhothash felmain
+				//de ghlat lazem mat-get-esh setted felmain b enha payment fa msh 3rfa han3mlha ezay mara payment wmara add to wallet wmanhothash felmain
 				service serviceName = new mobileRechargeService();
 				mobileServiceProvider ms = new etisalatMS();
 				etisalatMS es= new etisalatMS();
@@ -103,7 +103,7 @@ public class trial
 				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				es.createForm(f,serviceName,number,amount);
-				adm.createUsertransaction( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,typeTran, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
 				//t.add(new transaction(f.getFields().get(0).getInfo(),r.totalmoney(overall, spec, serviceName, checkuser),serviceName,"payment",nameu.get(nameu.size()-1)));	
 				System.out.println("enter cardnumber");
 				while(true) 
@@ -128,7 +128,7 @@ public class trial
 				double amount=sc.nextDouble();
 				vf.createForm(f,serviceName,number,amount);
 				vf.createForm(f,serviceName,number,amount);
-				adm.createUsertransaction( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,typeTran, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
 				//t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));		
 				break;
 				
@@ -367,11 +367,18 @@ public class trial
 			
 		}
 	   
+		else if (choice ==7)
+		{
+			System.out.println("Please enter your name");
+			String gname = sc.next();
+			adm.ShowListOfRefunds(gname);
+			
+		}
 		else
 			System.out.println("Invalid choice");
 			
 		}
-				while(choice!=7);
+				while(choice!=8);
 	}
 		else if(choice2==2)//do
 		{
@@ -431,8 +438,11 @@ public class trial
 				{
 					
 					adm.DisplayListOFrefunds();
-					System.out.println("please enter the index of refund request you want to accept: ");
-					int acceptindex=sc.nextInt();	
+					System.out.println("enter 1 to accept requests and 2 to deny requests");
+					int choice9=sc.nextInt();
+					System.out.println("please enter the index of refund request you want to accept/deny : ");
+					int Hindex=sc.nextInt();	
+					adm.HandelRefundrequest(Hindex, choice9);
 					
 					
 			    }
