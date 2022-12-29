@@ -11,11 +11,29 @@ public class admin {
 	static ArrayList<service>SDlist2=new ArrayList<>();
 	static ArrayList<Double>overallList=new ArrayList<>();
 	double value;
-	public void addSpecificDiscount(double disvalue,service serviceName)
+	public void addSpecificDiscount(double disvalue,int serviceName)
 	{ 
 		
-	     SDlist1.add(disvalue);
-	     SDlist2.add(serviceName);
+		if(serviceName==1) {
+			service service = new mobileRechargeService();
+		SDlist1.add(disvalue);
+		SDlist2.add(service);}
+		else if(serviceName==2) {
+			service service = new internetPaymentService();
+			SDlist1.add(disvalue);
+			SDlist2.add(service);
+			}
+		else if(serviceName==3) {
+			service service = new landlineService();
+			SDlist1.add(disvalue);
+			SDlist2.add(service);
+			}
+		else if(serviceName==4){
+			service service = new donationService();
+			SDlist1.add(disvalue);
+			SDlist2.add(service);
+			}
+		
 	     System.out.println("discount added successfully ");
 	     
 	}
@@ -85,12 +103,7 @@ public void createUsertransactionPay(int num,double amount, service serviceName,
 	t.add(new transaction(num,amount,serviceName,"payment",names));	
 	
 }
-public void createUsertransactionRefund(int num,double amount, service serviceName,String names)
-{
-	
-	t.add(new transaction(num,amount,serviceName,"refund",names));	
-	
-}
+
 public void createUsertransactionWallet(int num,double amount, service serviceName,String names)
 {
 		
