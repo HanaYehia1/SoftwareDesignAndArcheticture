@@ -8,6 +8,6 @@ public abstract class donationsServiceProvider {
 		 System.out.println("Please Enter The Mobile Number for the charity");
 		 System.out.println("Please Enter The amount to be tansfered");   
 	}
-	public abstract void createForm(form f);
+	public abstract void createForm(form f,service serviceName,double number,double money);
     
 }

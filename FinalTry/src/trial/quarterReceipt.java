@@ -8,12 +8,15 @@ public class quarterReceipt extends landlineServiceProvider{
          return var;
 	}
 	@Override
-	public void createForm(form f) {
+	public void createForm(form f,service serviceName,double number,double money) {
 		dropDownField dp2 = new dropDownField();
 		dropDownField dp1 = new dropDownField();
 		f.Addfields(dp2);
 		f.Addfields(dp1);
-		System.out.println("2 drop down");
+		f.getFields().get(0).execute(number);
+		f.getFields().get(1).execute(money);
+		serviceName.setCost(f.getFields().get(1).getInfo());
+		
 
 
 }

@@ -148,10 +148,6 @@ public class trial
 				double number=sc.nextDouble();
 				double amount=sc.nextDouble();
 				wems.createForm(f,serviceName,number,amount);
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
 				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
@@ -172,13 +168,11 @@ public class trial
 				internetServiceProvider ms = new etisalatIS();
 				etisalatIS eis=new etisalatIS();
 				form f=new form();
-				eis.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
-				System.out.println(serviceName);
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				eis.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
@@ -187,12 +181,11 @@ public class trial
 				internetServiceProvider ms = new vodafoneIS();
 				vodafoneIS voIs=new vodafoneIS();
 				form f=new form();
-				voIs.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				voIs.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			}
@@ -201,12 +194,12 @@ public class trial
 				internetServiceProvider ms = new orangeIS();
 				orangeIS oIs=new orangeIS();
 				form f=new form();
-				oIs.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				oIs.createForm(f,serviceName,number,amount);
+			
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 		    	}
@@ -215,12 +208,11 @@ public class trial
 				service serviceName = new internetPaymentService();
 				weIS weis=new weIS();
 				form f=new form();
-				weis.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				weis.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 			   }
@@ -240,13 +232,11 @@ public class trial
 				service serviceName = new landlineService();
 				quarterReceipt quartRec=new quarterReceipt();
 				form f=new form();
-				quartRec.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
-				System.out.println(serviceName);
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				quartRec.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
@@ -255,12 +245,12 @@ public class trial
 				landlineServiceProvider ms = new monthlyReceipt();
 				monthlyReceipt Mrec=new monthlyReceipt();
 				form f=new form();
-				Mrec.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				Mrec.createForm(f,serviceName,number,amount);
+				
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 		     	}
@@ -280,13 +270,11 @@ public class trial
 				donationsServiceProvider ms = new ngo();
 				ngo N=new ngo();
 				form f=new form();
-				N.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
-				System.out.println(serviceName);
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				N.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
@@ -295,12 +283,12 @@ public class trial
 				donationsServiceProvider ms = new schools();
 				schools sco=new schools();
 				form f=new form();
-				sco.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				sco.createForm(f,serviceName,number,amount);
+				
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 					break;
 			}
@@ -309,12 +297,12 @@ public class trial
 				donationsServiceProvider ms = new cancerHospitals();
 				cancerHospitals cHosi=new cancerHospitals();
 				form f=new form();
-				cHosi.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				cHosi.createForm(f,serviceName,number,amount);
+			
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				
 					break;

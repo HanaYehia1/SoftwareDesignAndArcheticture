@@ -6,6 +6,6 @@ public abstract class internetServiceProvider {
 		 System.out.println("Please Enter your Home Number for your internet");
 		 System.out.println("Please Enter The amount to be recharged");   
 	}
-	public abstract void createForm(form f);
+	public abstract void createForm(form f,service serviceName,double number,double money);
 
 }

@@ -8,11 +8,14 @@ public class vodafoneIS extends internetServiceProvider{
          return var;
 	}
 	@Override
-	public void createForm(form f) {
+	public void createForm(form f,service serviceName,double number,double money) {
 		textField t1 = new textField();
 		dropDownField dp2 = new dropDownField();
 		f.Addfields(dp2);
 		f.Addfields(t1);
+		f.getFields().get(0).execute(number);
+		f.getFields().get(1).execute(money);
+		serviceName.setCost(f.getFields().get(1).getInfo());
 		
 	}
 }
