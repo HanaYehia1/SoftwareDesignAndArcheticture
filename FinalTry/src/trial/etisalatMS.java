@@ -12,7 +12,7 @@ public class etisalatMS extends mobileServiceProvider {
          return var;
 	}
 	@Override
-	public void createForm(form f,service serviceName,double number,double money) {
+	public void createForm(form f,service serviceName,int number,double money) {
 		textField t2 = new textField();
 		dropDownField t1= new dropDownField();
 		f.Addfields(t2);
