@@ -137,7 +137,7 @@ public void DisplayListOFrefunds()
 	for(int i=0;i<refundList.size();i++)
 	{
 		if(refundList.get(i).getTypetransaction().equalsIgnoreCase("Waiting for acceptance"))
-	    System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name:"+refundList.get(i).getService().toString()+" "+refundList.get(i).getTyepe());
+	    System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name:"+refundList.get(i).getService().toString()+" index "+i);
 	}
 	
 	
