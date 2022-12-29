@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class userController {
 	public ArrayList<account> accounts=new ArrayList<>();
+	
 
 	  account acc=new account();
 	  public userController() {}
@@ -119,13 +120,18 @@ public class userController {
 	 }
 	 public double totalmoney(payment overall,payment specific, service serviceName,boolean check)
 	 {
+		 System.out.println("1st");
 		 double discountvalue;
-		 if(check==false) {
+		 if(check==false) 
+		 {
+			 System.err.println("2nd");
 		 double overalldis=overall.cost(serviceName);
 		 double specificdis=specific.cost(serviceName);
-		 return discountvalue=overalldis-(serviceName.getCost()-specificdis);}
+		 return discountvalue=overalldis-(serviceName.getCost()-specificdis);
+		 }
 		 else 
 		 {
+			 System.err.println("3rd");
 			 payment spec=new specificDiscount(new creditCard());
 			 return discountvalue=spec.cost(serviceName);
 		 }

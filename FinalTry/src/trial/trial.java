@@ -101,6 +101,7 @@ public class trial
 				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				es.createForm(f,serviceName,number,amount);
+				System.out.println(r.totalmoney(overall, spec, serviceName, checkuser));
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
 				
 				System.out.println("enter cardnumber");
@@ -171,6 +172,7 @@ public class trial
 				wems.createForm(f,serviceName,number,amount);
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
+				
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
 				System.out.println("enter cardnumber");
 				while(true) 
@@ -200,9 +202,20 @@ public class trial
 				etisalatIS eis=new etisalatIS();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				eis.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				System.out.println(r.totalmoney(overall, spec, serviceName, checkuser));
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}		
 				
 				
 				break;

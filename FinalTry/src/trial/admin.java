@@ -4,56 +4,56 @@ package trial;
 import java.util.ArrayList;
 
 
-public class admin {
+public class admin 
+{
 	static ArrayList<transaction>refundList=new ArrayList<>();
 	static ArrayList<transaction>t=new ArrayList<>();
-	static ArrayList<Double>SDlist1=new ArrayList<>();
-	static ArrayList<service>SDlist2=new ArrayList<>();
-	static ArrayList<Double>overallList=new ArrayList<>();
 	double value;
 	public void addSpecificDiscount(double disvalue,service serviceName)
 	{ 
 		
-	     SDlist1.add(disvalue);
-	     SDlist2.add(serviceName);
+		
+	     adminEntity.SDlist1.add(disvalue);
+	     adminEntity.SDlist2.add(serviceName);
 	     System.out.println("discount added successfully ");
 	     
 	}
 	public void addoverallDiscount(double disvalue)
 	{ 
-		overallList.add(disvalue);
+		adminEntity.overallList.add(disvalue);
 		System.out.println("discount added successfully ");
 		
    
 	}
 public void displayDiscount()
 {
-	System.out.println("discounts on all services ="+overallList.toString());
-	for(int i=0;i<SDlist1.size();i++)
+	System.out.println("discounts on all services ="+adminEntity.overallList.toString());
+	for(int i=0;i<adminEntity.SDlist1.size();i++)
 	{
-		System.out.println("specific discount Name"+SDlist2.toString()+"amount"+SDlist1.toString());
+		System.out.println("specific discount Name"+adminEntity.SDlist2.toString()+"amount"+adminEntity.SDlist1.toString());
 	}
 }
 public double getdiscountpr(String typediscount,service servicename)
 {
 	if(typediscount.equalsIgnoreCase("overall"))
 	{
-		if(overallList.size()!=0)
-		     return overallList.get(0);
+		if(adminEntity.overallList.size()!=0)
+		     return adminEntity.overallList.get(0);
 	}
 	else if(typediscount.equalsIgnoreCase("specific"))
 	{
-		if(overallList.size()!=0)
+		if(adminEntity.SDlist2.size()!=0)
 		{
-		for(int i=0;i<1;i++)
+		for(int i=0;i<adminEntity.SDlist1.size() ;i++)
 		{
 			
-			if(SDlist2.get(i).getClass()==servicename.getClass())
+			if(adminEntity.SDlist2.get(i).getClass()==servicename.getClass())
 			{
-				return SDlist1.get(i);
+				return adminEntity.SDlist1.get(i);
 		    }
 			
-			}}
+			}
+		}
 		
 	}
 	return 1;
@@ -85,12 +85,7 @@ public void createUsertransactionPay(int num,double amount, service serviceName,
 	t.add(new transaction(num,amount,serviceName,"payment",names));	
 	
 }
-public void createUsertransactionRefund(int num,double amount, service serviceName,String names)
-{
-	
-	t.add(new transaction(num,amount,serviceName,"refund",names));	
-	
-}
+
 public void createUsertransactionWallet(int num,double amount, service serviceName,String names)
 {
 		
