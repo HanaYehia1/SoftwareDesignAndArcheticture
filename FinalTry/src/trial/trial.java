@@ -69,10 +69,9 @@ public class trial
             if(nameu.size()>1) {
         		for(int i=0;i<nameu.size();i++)
         		{
-        			System.out.println("first");
         			if(nameu.get(i).equalsIgnoreCase(username))
         			{
-        				System.out.println("second");
+        			
         				checkuser=true;
         				break;
         			}
@@ -99,17 +98,17 @@ public class trial
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
 				form f=new form();
-				es.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
-				serviceName.setCost(f.getFields().get(1).getInfo());
-				System.out.println("enter cardnumber");
-				String cardN=sc.next();
-				r.checkcardnumber(cardN);
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				es.createForm(f,serviceName,number,amount);
 				t.add(new transaction(f.getFields().get(0).getInfo(),r.totalmoney(overall, spec, serviceName, checkuser),serviceName,"payment",nameu.get(nameu.size()-1)));	
+				System.out.println("enter cardnumber");
+				while(true) {
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}
 				break;
 			}
 			case 2:
@@ -118,18 +117,11 @@ public class trial
 				mobileServiceProvider ms = new vodafoneM();
 				vodafoneM vf=new vodafoneM();
 				form f=new form();
-				vf.createForm(f);
 				ms.display();
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
 				service serviceName = new mobileRechargeService();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					
-					System.out.println(f.getFields().get(i).getInfo());
-				}
+				vf.createForm(f,serviceName,number,amount);
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));		
 				break;
 				
@@ -139,12 +131,11 @@ public class trial
 				mobileServiceProvider ms = new orangeMS();
 				form f=new form();
 				orangeMS os=new orangeMS();
-				os.createForm(f);
 				ms.display();
-				for(int i=0;i<f.getFields().size();i++)
-				{
-					f.getFields().get(i).execute(sc.nextDouble());
-				}
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				os.createForm(f,serviceName,number,amount);
+				
 				t.add(new transaction(f.getFields().get(0).getInfo(),f.getFields().get(1).getInfo(),serviceName,"payment",nameu.get(nameu.size()-1)));
 				break;
 		    	}
@@ -152,9 +143,11 @@ public class trial
 				mobileServiceProvider ms = new weMS();
 				weMS wems=new weMS();
 				form f=new form();
-				wems.createForm(f);
 				service serviceName = new mobileRechargeService();
 				ms.display();
+				double number=sc.nextDouble();
+				double amount=sc.nextDouble();
+				wems.createForm(f,serviceName,number,amount);
 				for(int i=0;i<f.getFields().size();i++)
 				{
 					f.getFields().get(i).execute(sc.nextDouble());

@@ -8,5 +8,5 @@ public abstract class mobileServiceProvider {
 		 System.out.println("Please Enter your Mobile Number");
 		 System.out.println("Please Enter The amount to be recharged");   
 	}
-	public abstract void createForm(form f);
+	public abstract void createForm(form  f,service serviceName,double number,double money);
 }
