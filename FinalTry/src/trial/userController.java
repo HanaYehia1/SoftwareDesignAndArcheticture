@@ -76,7 +76,8 @@ public class userController {
 	          acc=accounts.get(i);
 	          if(username.equalsIgnoreCase(acc.getuserName()))
 	          {
-	        	  checkcardnumber(cardnumber);
+	        	  if(checkcardnumber(cardnumber)==true)
+	        	    return true;
 	          }
 
 	      }
@@ -92,7 +93,7 @@ public class userController {
 		 {
 			 for(int i=0;i<t.size();i++)
 			 {
-				 if(t.get(i).getuser().get(i).equalsIgnoreCase(username)&&t.get(i).getTypetransaction().equalsIgnoreCase("payment"))
+				 if(t.get(i).getUsernamr().equalsIgnoreCase(username)&&t.get(i).getTypetransaction().equalsIgnoreCase("payment"))
 					 System.out.println(" mobile number= "+t.get(i).getTyepe()+" "+t.get(i).getService().toString()+" "+t.get(i).getTypetransaction() +" amount of transaction is"+ t.get(i).getAmount());
 			 }
 		 }

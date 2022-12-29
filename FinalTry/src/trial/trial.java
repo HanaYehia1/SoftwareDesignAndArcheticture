@@ -85,6 +85,7 @@ public class trial
 			serviceProducer s=new serviceProducer();
 			String name = "mobile";
 			System.out.println("Please choose the number of the service provider for your service");
+			
 			s.searchService(name);
 			int serviceProviderNum = sc.nextInt();
 			switch(serviceProviderNum) {
@@ -100,7 +101,7 @@ public class trial
 				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				es.createForm(f,serviceName,number,amount);
-				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
 				
 				System.out.println("enter cardnumber");
 				while(true) 
@@ -125,7 +126,7 @@ public class trial
 				double amount=sc.nextDouble();
 				vf.createForm(f,serviceName,number,amount);
 				
-				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -147,7 +148,7 @@ public class trial
 				os.createForm(f,serviceName,number,amount);
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
-				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -170,7 +171,7 @@ public class trial
 				wems.createForm(f,serviceName,number,amount);
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
-				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu);
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -358,6 +359,7 @@ public class trial
             if(r.addtowallet(username,amount ,password )==true)
             {
             	
+            	adm.createUsertransactionWallet(0, amount, serviceName, username);
 	
             }
 		}

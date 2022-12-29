@@ -1,24 +1,24 @@
 package trial;
 
-import java.util.ArrayList;
+
 
 public class transaction {
 	public int num;
 	public double amount;
 	public service serviceName;
 	public String typetransaction;
-	public ArrayList<String> user;
 	public String name;
-	//public String status;
+
 	 
-	 public transaction(int num,double amount, service serviceName,String typetransaction,ArrayList<String> user)
+	 public transaction(int num,double amount, service serviceName,String typetransaction,String name)
 	 {
 		 this.num=num;
 		 this.amount=amount;
 		 this.serviceName = serviceName;
 		 this.typetransaction = typetransaction;
-		 this.user=user;
+		 this.name=name;
 	 }
+	
 	 public transaction(double amount,service serviceName,String typetransaction,String name,int num)
 	 {
 		 this.name=name;
@@ -51,10 +51,7 @@ public class transaction {
 	 public service getService() {
 		 return serviceName;
 	 }
-	 public ArrayList<String> getuser()
-	 {
-		 return user;
-	 }
+	
 	public String getUsernamr()
 	{
 		return name;

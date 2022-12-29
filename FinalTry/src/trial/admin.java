@@ -1,12 +1,12 @@
 package trial;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 
 public class admin {
-	ArrayList<transaction>refundList=new ArrayList<>();
-	ArrayList<transaction>t=new ArrayList<transaction>();
+	static ArrayList<transaction>refundList=new ArrayList<>();
+	static ArrayList<transaction>t=new ArrayList<>();
 	static ArrayList<Double>SDlist1=new ArrayList<>();
 	static ArrayList<service>SDlist2=new ArrayList<>();
 	static ArrayList<Double>overallList=new ArrayList<>();
@@ -61,39 +61,40 @@ public double getdiscountpr(String typediscount,service servicename)
 
 public void usertransaction(String username) 
 {
+	System.out.println(t.size());
 	for(int i=0;i<t.size();i++)
 	{
 		
-		if(username.equalsIgnoreCase(t.get(i).getuser().get(i)))
+		if(username.equalsIgnoreCase(t.get(i).getUsernamr()))
 		{
 			
 			if(t.get(i).getTypetransaction().equalsIgnoreCase("payment"))
 			   System.out.println(" mobile number= "+t.get(i).getTyepe()+" "+t.get(i).getService().toString()+" "+t.get(i).getTypetransaction() +" amount of transaction is"+ t.get(i).getAmount());
 			if(t.get(i).getTypetransaction().equalsIgnoreCase("add to wallet"))
 				System.out.println(" "+t.get(i).getTypetransaction() +" amount of transaction is "+ t.get(i).getAmount());
-			if(t.get(i).getTypetransaction().equalsIgnoreCase("refund"))
-				System.out.println(" "+t.get(i).getTypetransaction() +" amount of transaction is "+ t.get(i).getAmount());
+			
 				
 		}
 		
 	}
+	ShowListOfRefunds(username);
 }
-public void createUsertransactionPay(int num,double amount, service serviceName,ArrayList<String>names)
+public void createUsertransactionPay(int num,double amount, service serviceName,String names)
 {
 	
 	t.add(new transaction(num,amount,serviceName,"payment",names));	
 	
 }
-public void createUsertransactionRefund(int num,double amount, service serviceName,ArrayList<String>names)
+public void createUsertransactionRefund(int num,double amount, service serviceName,String names)
 {
 	
 	t.add(new transaction(num,amount,serviceName,"refund",names));	
 	
 }
-public void createUsertransactionWallet(int num,double amount, service serviceName,ArrayList<String>names)
+public void createUsertransactionWallet(int num,double amount, service serviceName,String names)
 {
-	
-	t.add(new transaction(num,amount,serviceName,"add to wallet",names));	
+		
+	t.add(new transaction(num,amount,null,"add to wallet",names));	
 	
 }
 public boolean checkRefundRequest(String name)
@@ -103,7 +104,7 @@ public boolean checkRefundRequest(String name)
 {
 	for(int i=0;i<t.size();i++)
 {
-	if(name.equalsIgnoreCase(t.get(i).getuser().get(i)))
+	if(name.equalsIgnoreCase(t.get(i).getUsernamr())&&t.get(i).getTypetransaction().equalsIgnoreCase("payment"))
 	{
       System.out.println(" index: "+i+" "+t.get(i).getService().toString()+"" +" amount of transaction is "+ t.get(i).getAmount()+t.get(i).getTypetransaction());
 	
@@ -137,7 +138,7 @@ public void DisplayListOFrefunds()
 	for(int i=0;i<refundList.size();i++)
 	{
 		if(refundList.get(i).getTypetransaction().equalsIgnoreCase("Waiting for acceptance"))
-	    System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name:"+refundList.get(i).getService().toString()+" index "+i);
+	    System.out.println("Amount= "+refundList.get(i).getAmount()+" "+"service name:"+refundList.get(i).getService().toString()+" index"+i);
 	}
 	
 	
@@ -145,6 +146,7 @@ public void DisplayListOFrefunds()
 public void HandelRefundrequest(int index ,int choice)
 
 {
+	if(refundList.size()>0){
 	if(choice==1)
 	{
 		refundList.get(index).setTransactionStatus("accepted");
@@ -152,7 +154,10 @@ public void HandelRefundrequest(int index ,int choice)
 	else
 		refundList.get(index).setTransactionStatus("not accepted");
 	
-}
+      }
+	
+	}
+
 
 
 
