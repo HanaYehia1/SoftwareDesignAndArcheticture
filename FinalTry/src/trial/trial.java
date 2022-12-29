@@ -426,7 +426,7 @@ public class trial
 					System.out.println("for overall discount press 1 for specific discount press 2");
 					int discountchoice;
 					double amount;
-					int serviceName;
+					int num;
 					discountchoice=sc.nextInt();
 					
 					System.out.println("enter discount amount");
@@ -438,23 +438,9 @@ public class trial
 					else
 					{
 						System.out.println("choose service type \n"+"1. Mobile Recharge Service \n"+"2. Internet Payment Service \n"+"3. Landline Service\n"+"4. Donation Service\n");
-						serviceName=sc.nextInt();
-						if(serviceName==1) {
-							service service = new mobileRechargeService();
-							adm.addSpecificDiscount(amount,service);}
-						else if(serviceName==2) {
-							service service = new internetPaymentService();
-							adm.addSpecificDiscount(amount,service);}
-						else if(serviceName==3) {
-							service service = new landlineService();
-							adm.addSpecificDiscount(amount, service);}
-						else if(serviceName==4) {
-							service service = new donationService();
-							adm.addSpecificDiscount(amount, service);}
-						
-						
+						num=sc.nextInt();
+						adm.addSpecificDiscount(amount, num);
 					}
-					
 						
 				}
 				else if(choice3==2)
