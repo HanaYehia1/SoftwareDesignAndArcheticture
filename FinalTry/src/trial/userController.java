@@ -66,11 +66,7 @@ public class userController {
 	  }
 	  public boolean addtowallet (String username,double amount,String cardnumber)
 	  {
-	      int count = 0;
-	      for(int i = 0; i < cardnumber.length(); i++) {
-	          if(cardnumber.charAt(i) != ' ')
-	              count++;
-	      } 
+	      
 	      if(accounts.size()==0)
 	      {
 	          System.out.println("user not found please sign up first");
@@ -79,25 +75,59 @@ public class userController {
 	      {
 	          acc=accounts.get(i);
 	          if(username.equalsIgnoreCase(acc.getuserName()))
-	          { if(count==16)
-	              {
-	                 acc.setWallet(amount+acc.getWallet());
-	                 System.out.println("successful transfer ,wallet balance= "+acc.getWallet());
-	                 return true;
-	                 
-	              }
-	          
-	          else {
-	              System.out.println("wrong card number");
-	              return false;
-	              
+	          {
+	        	  checkcardnumber(cardnumber);
 	          }
-	          }
-	         
-
 
 	      }
 	      return false;
 }
-	  
+	 public boolean refundrequest(ArrayList<transaction> t, String username) {
+		 if(t.size()==0)
+		 {
+			 System.out.println("No transaction has been made in system yet ");
+			 return false;
+		 }
+		 else 
+		 {
+			 for(int i=0;i<t.size();i++)
+			 {
+				 if(t.get(i).getuser().equalsIgnoreCase(username)&&t.get(i).getTypetransaction().equalsIgnoreCase("payment"))
+					 System.out.println(" mobile number= "+t.get(i).getTyepe()+" "+t.get(i).getService().toString()+" "+t.get(i).getTypetransaction() +" amount of transaction is"+ t.get(i).getAmount());
+			 }
+		 }
+		 return true;
+	 }
+	 public boolean checkcardnumber(String cardN)
+	 {
+		 int count = 0;
+	      for(int i = 0; i < cardN.length(); i++) {
+	          if(cardN.charAt(i) != ' ')
+	              count++;
+	      } 
+	      if(count==16) {
+	    	  System.out.println("successful payment");
+	    	  return true;
+	    	  
+	    	  }
+	      
+	      else {
+	    	  System.out.println("wrong cardnumber, please re-enter cardnumber");
+	    	  return false;
+	 }
+	 }
+	 public double totalmoney(payment overall,payment specific, service serviceName,boolean check)
+	 {
+		 double discountvalue;
+		 if(check==false) {
+		 double overalldis=overall.cost(serviceName);
+		 double specificdis=specific.cost(serviceName);
+		 return discountvalue=overalldis-(serviceName.getCost()-specificdis);}
+		 else 
+		 {
+			 payment spec=new specificDiscount(new creditCard());
+			 return discountvalue=spec.cost(serviceName);
+		 }
+		 
+	 }
 }

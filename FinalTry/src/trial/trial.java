@@ -96,6 +96,8 @@ public class trial
 				service serviceName = new mobileRechargeService();
 				mobileServiceProvider ms = new etisalatMS();
 				etisalatMS es= new etisalatMS();
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
 				form f=new form();
 				es.createForm(f);
 				ms.display();
@@ -104,38 +106,10 @@ public class trial
 					f.getFields().get(i).execute(sc.nextDouble());
 				}
 				serviceName.setCost(f.getFields().get(1).getInfo());
-				double discountvalue;
-				if(checkuser==false) {
-					
-					payment overall=new overallDiscount(new creditCard());
-					double overalldis=overall.cost(serviceName);
-					payment spec=new specificDiscount(new creditCard());
-					double specificdis=spec.cost(serviceName);
-					 discountvalue=overalldis-(serviceName.getCost()-specificdis);
-					
-				}else
-				{
-					payment spec=new specificDiscount(new creditCard());
-					 discountvalue=spec.cost(serviceName);
-				}
 				System.out.println("enter cardnumber");
-				while (true) {
 				String cardN=sc.next();
-				int count = 0;
-			      for(int i = 0; i < cardN.length(); i++) {
-			          if(cardN.charAt(i) != ' ')
-			              count++;
-			      } 
-			      if(count==16) {
-			    	  System.out.println("successful payment");
-			    	  break;
-			    	  }
-			      
-			      else {
-			    	  System.out.println("wrong cardnumber, please re-enter cardnumber");}
-				}
-				
-				t.add(new transaction(f.getFields().get(0).getInfo(),discountvalue,serviceName,"payment",nameu.get(nameu.size()-1)));	
+				r.checkcardnumber(cardN);
+				t.add(new transaction(f.getFields().get(0).getInfo(),r.totalmoney(overall, spec, serviceName, checkuser),serviceName,"payment",nameu.get(nameu.size()-1)));	
 				break;
 			}
 			case 2:
