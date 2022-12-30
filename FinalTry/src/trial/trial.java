@@ -16,7 +16,7 @@ public class trial
 
 	}
 	public static void main(String[] args) {
-		
+		userController userCont=new userController();
 		ArrayList<String>nameu=new ArrayList<String>();
 		Scanner sc=new Scanner(System.in);
 		admin adm=new admin();
@@ -46,13 +46,18 @@ public class trial
 		String password=sc.next();
 		output1=r.signUp(username, email, password);
 		if(output1==true)
+		{
 			nameu.add(username);
+			checkuser=false;
+		}
+		
 		else
 			System.out.println("email or username already existed in system please choose enter another one ");
 		
 		}
 		else if(choice==2)
 		{
+			
 			System.out.println("Please enter your username");
 			 username=sc.next();
 			System.out.println("Please enter your password");
@@ -61,19 +66,9 @@ public class trial
             if(output1==true)
     			nameu.add(username);
             else
-            	System.out.println("user not found please sign up first");
-            if(nameu.size()>1) {
-        		for(int i=0;i<nameu.size();i++)
-        		{
-        			if(nameu.get(i).equalsIgnoreCase(username))
-        			{
-        			
-        				checkuser=true;
-        				break;
-        			}
-        		}
-        		}
-           
+            System.out.println("user not found please sign up first");
+            checkuser= userCont.checkUser(nameu, username);
+                           
            
 		}
 		if(output1==true) {
@@ -101,9 +96,8 @@ public class trial
 				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				es.createForm(f,serviceName,number,amount);
-				System.out.println(r.totalmoney(overall, spec, serviceName, checkuser));
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
-				
+				System.out.println(" the available payment method is credit card");
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -128,13 +122,14 @@ public class trial
 				vf.createForm(f,serviceName,number,amount);
 				
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
 				String cardN=sc.next();
 				if(r.checkcardnumber(cardN)==true)
 					break;
-				}		
+				}	
 				break;
 				
 			}
@@ -150,13 +145,14 @@ public class trial
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName, nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
 				String cardN=sc.next();
 				if(r.checkcardnumber(cardN)==true)
 					break;
-				}		
+				}	
 				
 				
 				break;
@@ -174,6 +170,7 @@ public class trial
 				payment spec=new specificDiscount(new creditCard());
 				
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -207,8 +204,8 @@ public class trial
 				eis.createForm(f,serviceName,number,amount);
 				payment overall=new overallDiscount(new creditCard());
 				payment spec=new specificDiscount(new creditCard());
-				System.out.println(r.totalmoney(overall, spec, serviceName, checkuser));
 				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
 				System.out.println("enter cardnumber");
 				while(true) 
 				{
@@ -226,10 +223,20 @@ public class trial
 				vodafoneIS voIs=new vodafoneIS();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				voIs.createForm(f,serviceName,number,amount);
-				
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 				
 				break;
 			}
@@ -239,9 +246,20 @@ public class trial
 				orangeIS oIs=new orangeIS();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				oIs.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 			
 				
 				break;
@@ -252,9 +270,20 @@ public class trial
 				weIS weis=new weIS();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				weis.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}		
 				
 				break;
 			   }
@@ -275,9 +304,20 @@ public class trial
 				quarterReceipt quartRec=new quarterReceipt();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				quartRec.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 				
 					break;
 			}
@@ -287,10 +327,20 @@ public class trial
 				monthlyReceipt Mrec=new monthlyReceipt();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				Mrec.createForm(f,serviceName,number,amount);
-				
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 				
 					break;
 		     	}
@@ -311,9 +361,20 @@ public class trial
 				ngo N=new ngo();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				N.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 				
 					break;
 			}
@@ -323,9 +384,20 @@ public class trial
 				schools sco=new schools();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				sco.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 				
 				
 					break;
@@ -336,9 +408,20 @@ public class trial
 				cancerHospitals cHosi=new cancerHospitals();
 				form f=new form();
 				ms.display();
-				double number=sc.nextDouble();
+				int number=sc.nextInt();
 				double amount=sc.nextDouble();
 				cHosi.createForm(f,serviceName,number,amount);
+				payment overall=new overallDiscount(new creditCard());
+				payment spec=new specificDiscount(new creditCard());
+				adm.createUsertransactionPay( number, r.totalmoney(overall, spec, serviceName, checkuser), serviceName,nameu.get(nameu.size()-1));
+				System.out.println(" the available payment method is credit card");
+				System.out.println("enter cardnumber");
+				while(true) 
+				{
+				String cardN=sc.next();
+				if(r.checkcardnumber(cardN)==true)
+					break;
+				}	
 			
 				
 				

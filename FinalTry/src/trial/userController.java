@@ -120,21 +120,36 @@ public class userController {
 	 }
 	 public double totalmoney(payment overall,payment specific, service serviceName,boolean check)
 	 {
-		 System.out.println("1st");
+		 
 		 double discountvalue;
 		 if(check==false) 
 		 {
-			 System.err.println("2nd");
 		 double overalldis=overall.cost(serviceName);
 		 double specificdis=specific.cost(serviceName);
 		 return discountvalue=overalldis-(serviceName.getCost()-specificdis);
 		 }
 		 else 
 		 {
-			 System.err.println("3rd");
 			 payment spec=new specificDiscount(new creditCard());
 			 return discountvalue=spec.cost(serviceName);
 		 }
 		 
+	 }
+public boolean checkUser(ArrayList<String>users,String username)
+	 {
+	
+		 if(users.size()>1) 
+		 {
+     		for(int i=0;i<users.size();i++)
+     		{
+     			if(users.get(i).equalsIgnoreCase(username))
+     			{
+     			
+     				return true;
+     			}
+     		}
+     		
+     	}
+		return false;
 	 }
 }

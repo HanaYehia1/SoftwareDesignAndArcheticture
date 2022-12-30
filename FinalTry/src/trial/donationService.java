@@ -36,7 +36,7 @@ public class donationService extends service{
 	public  boolean supportsCashOnDelivery(){
 		boolean support=true; 
 		if(support) {
-			System.out.println("payments options 1-credit card ");
+			
 			return true;
 		}
 		else {

@@ -6,18 +6,36 @@ import java.util.ArrayList;
 
 public class admin 
 {
+	// admin will take object from the sub class
 	static ArrayList<transaction>refundList=new ArrayList<>();
 	static ArrayList<transaction>t=new ArrayList<>();
 	double value;
-	public void addSpecificDiscount(double disvalue,service serviceName)
-	{ 
-		
-		
-	     adminEntity.SDlist1.add(disvalue);
-	     adminEntity.SDlist2.add(serviceName);
-	     System.out.println("discount added successfully ");
-	     
-	}
+	public void addSpecificDiscount(double disvalue,int serviceName)
+    { 
+
+        if(serviceName==1) {
+            service service = new mobileRechargeService();
+        adminEntity.SDlist1.add(disvalue);
+        adminEntity.SDlist2.add(service);}
+        else if(serviceName==2) {
+            service service = new internetPaymentService();
+            adminEntity.SDlist1.add(disvalue);
+            adminEntity.SDlist2.add(service);
+            }
+        else if(serviceName==3) {
+            service service = new landlineService();
+            adminEntity.SDlist1.add(disvalue);
+            adminEntity.SDlist2.add(service);
+            }
+        else if(serviceName==4){
+            service service = new donationService();
+            adminEntity. SDlist1.add(disvalue);
+            adminEntity.SDlist2.add(service);
+            }
+
+         System.out.println("discount added successfully ");
+
+    }
 	public void addoverallDiscount(double disvalue)
 	{ 
 		adminEntity.overallList.add(disvalue);

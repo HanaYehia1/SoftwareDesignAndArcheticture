@@ -16,6 +16,7 @@ public class account {
 		   this.email=email;
 		   this.password=password;
 		   this.wallet = wallet;
+		   
 	   }
 	   public account() {}
 	   public account(String email,String password)
